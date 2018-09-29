@@ -16,7 +16,6 @@ import MenuBuilder from './menu';
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
 }
 
@@ -61,8 +60,9 @@ app.on('ready', async () => {
   }
 
   mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
+    frame: false,
+    alwaysOnTop: true,
+    width: 400,
     height: 728
   });
 
@@ -74,6 +74,7 @@ app.on('ready', async () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
+  const sourceMapSupport = require('source-map-support');
     if (process.env.START_MINIMIZED) {
       mainWindow.minimize();
     } else {
