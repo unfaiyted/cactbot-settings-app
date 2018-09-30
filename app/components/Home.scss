@@ -1,18 +1,23 @@
 .container {
   position: absolute;
-  left: 10px;
-  text-align: center;
+  text-align: left;
+}
+
+.container h1 {
+  font-size: 1.9em;
+  padding-left: 10px;
 }
 
 .container h2 {
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
+
 .container h3 {
-  font-size: 1.7rem;
+  font-size: 1.1rem;
 }
 
 .container h4 {
-  font-size: 1.5rem;
+  font-size: 0.9rem;
 }
 
 .container h5 {

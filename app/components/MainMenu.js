@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './MainMenu.scss';
 import {Link} from "react-router-dom";
+import styles from './MainMenu.scss';
 import routes from "../constants/routes";
 
 export default class MainMenu extends React.Component {

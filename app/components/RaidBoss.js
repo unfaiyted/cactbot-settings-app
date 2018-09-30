@@ -18,8 +18,8 @@ export default class RaidBoss extends Component<Props> {
   render() {
     return (
       <div className={styles.container} data-tid="container">
-        <h2>Raid Boss</h2>
 
+        <h1>Raid Boss</h1>
         <Section
           title='Timeline'
           enableToggle={true}
