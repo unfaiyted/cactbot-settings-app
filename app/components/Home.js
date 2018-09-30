@@ -2,8 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes.json';
-import styles from './Home.css';
-import TitleBar from "./TitleBar";
+import styles from './Home.scss';
 
 type Props = {};
 
@@ -13,9 +12,15 @@ export default class Home extends Component<Props> {
   render() {
     return (
       <div className={styles.container} data-tid="container">
-        <TitleBar/>
-        <h2>Home</h2>
-        <Link to={routes.COUNTER}>to Counter</Link>
+        <h2>CactBot v8.0.3</h2>
+
+        <h4>Recent News</h4>
+
+        <ul>
+          <li>Lastest Reverison... date blah</li>
+          <li>Lastest Reverison... date blah</li>
+        </ul>
+
       </div>
     );
   }

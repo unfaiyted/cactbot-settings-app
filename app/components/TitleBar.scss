@@ -1,38 +1,50 @@
+@import '../styles/animations';
+
+$barHeight: 20px;
+
 .titleBarContainer {
   display: flex;
   flex-direction: row;
   width: calc(100% - 10px);
-  position: fixed;
+
   top: 0;
   left: 0;
-  background: darken(#ccc, 50%);
+  background: darken(#ccc, 60%);
   padding: 5px;
-  height: 12px;
-  line-height: 12px;
+  margin: 0;
+  height: $barHeight;
+  line-height: $barHeight;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 14px;
+  position: relative;
+  i {
+    font-size: 12px;
 
+    &:hover {
+      animation: pulsate 1s infinite;
+    }
+  }
+  // title Bar Main
   .titleBar {
     display: flex;
     flex-direction: row;
-
     flex: 1;
+
+    span {
+      padding: 0 8px;
+    }
   }
 
+  // Action Bar for close,minimize windows
   .actionBar {
     cursor: pointer;
 
     span {
-      padding-right: 5px;
+      padding-right: 8px;
     }
 
     span:first-of-type {
-      padding-right: 10px;
+      padding-right: 18px;
     }
-  }
-
-  img {
-    height: 100%;
-    float: left;
   }
 }
