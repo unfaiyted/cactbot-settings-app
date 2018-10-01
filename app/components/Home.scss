@@ -1,6 +1,9 @@
 .container {
   position: absolute;
   text-align: left;
+  overflow-y: visible;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .container h1 {

@@ -7,11 +7,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: calc(100% - 20px);
+    padding: 10px;
     h2 {
       cursor: pointer;
       text-align: left;
-      padding-left: 20px;
+      padding-left: 10px;
     }
   }
   .sectionContent {

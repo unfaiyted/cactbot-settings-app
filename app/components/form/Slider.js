@@ -6,7 +6,11 @@ type Props = {
   label: string,
   unit: string,
   min: number,
-  max: number
+  max: number,
+  step: number,
+  startingValue: number,
+  beforeColor: string,
+  afterColor: string
 };
 
 
@@ -14,40 +18,87 @@ type Props = {
 export default class Slider extends React.Component<Props> {
   props: Props;
 
-  // static defaultProps = {
-  //   id: "ERROR",
-  //   label: "Default Label",
-  //   unit: 'unit',
-  //   min: 0,
-  //   max: 100,
-  //   step: 1,
-  // };
+  static defaultProps = {
+    id: "SET_ID",
+    label: "Default Slider Label",
+    unit: 'unit',
+    min: 0,
+    max: 100,
+    step: 1,
+    beforeColor: '#6D92A0',
+    afterColor: '#ccc'
+  };
+
+
 
   componentWillMount() {
+    const { beforeColor, afterColor, startingValue , max} = this.props;
+
+    const value = ((typeof startingValue !== "undefined") ? startingValue : max/2) / max;
+
     this.setState({
-      valueSet: 0
+      valueSet: (startingValue) || max/2,
+      currentValue: startingValue,
+      barStyle: {
+        backgroundImage:
+        `-webkit-gradient(
+            linear,
+            left top,
+            right top,
+          color-stop(${value}, ${beforeColor}),
+          color-stop(${value}, ${afterColor})
+        )`
+      },
+
     })
   }
 
   changeValue = (e) => {
+    const { beforeColor, afterColor, max} = this.props;
     const {valueSet} = this.state;
-    this.setState({
-      valueSet: 1
-    })
 
-    console.log(e.target.value);
+    const value = e.target.value / max;
+
+    this.setState({
+      valueSet: e.target.value,
+      currentValue: e.target.value,
+      barStyle: {
+        backgroundImage:
+          `-webkit-gradient(
+            linear,
+            left top,
+            right top,
+          color-stop(${value}, ${beforeColor}),
+          color-stop(${value}, ${afterColor})
+        )`
+      },
+
+
+    });
+
+
   };
 
   render() {
 
     const { id, label, unit, min, max } = this.props;
+    const { barStyle, valueSet, currentValue } = this.state;
 
     return (
       <div id={id} className={styles["slider-bar"]}>
         <span className={styles.label}>{label}</span>
-        <div>
-          <input type='range' onChange={this.changeValue} className={styles.slider} data-min={min} data-max={max} data-unit={unit} />
-          <div className={styles["slider-val"]}>0 {unit}</div>
+        <div className={styles.inputWrapper}>
+          <div>
+            <input type='range'
+                 onChange={this.changeValue}
+                 className={styles.slider}
+                 min={min}
+                 max={max}
+                 value={(currentValue)}
+                  />
+            <div style={barStyle} className={styles.bar}></div>
+          </div>
+          <div className={styles["slider-val"]}>{valueSet} {unit}</div>
         </div>
       </div>
     );

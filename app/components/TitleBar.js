@@ -16,6 +16,7 @@ export default class TitleBar extends React.Component {
 
   render() {
     return (
+      <div>
       <div className={styles.titleBarContainer} >
         <MainMenu/>
         <div id='titleBar' className={styles.titleBar}>
@@ -28,6 +29,10 @@ export default class TitleBar extends React.Component {
               <i className="fa fa-times" aria-hidden="true" />
             </span>
           </div>
+      </div>
+        <div className={styles.titleBarSpacer}>
+
+        </div>
       </div>
     )
   }

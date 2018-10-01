@@ -2,6 +2,10 @@
 
 $barHeight: 20px;
 
+.titleBarSpacer {
+  height: 30px;
+}
+
 .titleBarContainer {
   display: flex;
   flex-direction: row;
@@ -16,7 +20,9 @@ $barHeight: 20px;
   line-height: $barHeight;
   justify-content: space-between;
   font-size: 14px;
-  position: relative;
+  position: fixed;
+  z-index: 100;
+
   i {
     font-size: 12px;
 
