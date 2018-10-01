@@ -29,12 +29,13 @@ export default class Slider extends React.Component<Props> {
     })
   }
 
-  changeValue = () => {
+  changeValue = (e) => {
     const {valueSet} = this.state;
     this.setState({
       valueSet: 1
     })
 
+    console.log(e.target.value);
   };
 
   render() {
@@ -44,8 +45,10 @@ export default class Slider extends React.Component<Props> {
     return (
       <div id={id} className={styles["slider-bar"]}>
         <span className={styles.label}>{label}</span>
-        <input type='range' className={styles.slider} data-min={min} data-max={max} data-unit={unit} />
-        <div className={styles["slider-val"]}>0 {unit}</div>
+        <div>
+          <input type='range' onChange={this.changeValue} className={styles.slider} data-min={min} data-max={max} data-unit={unit} />
+          <div className={styles["slider-val"]}>0 {unit}</div>
+        </div>
       </div>
     );
   }
