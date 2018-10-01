@@ -1,6 +1,6 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
+  "name": "catbot-settings-app",
+  "productName": "CactBot Settings",
   "version": "0.14.0",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "scripts": {
@@ -45,8 +45,8 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "CactBot Settings App",
+    "appId": "org.cactbot.settings",
     "files": [
       "dist/",
       "node_modules/",
@@ -209,8 +209,8 @@
     "@fortawesome/fontawesome-free": "^5.2.0",
     "devtron": "^1.4.0",
     "electron-debug": "^2.0.0",
+    "electron-store": "^2.0.0",
     "history": "^4.7.2",
-    "n": "^2.1.12",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",

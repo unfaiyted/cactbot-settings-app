@@ -11,9 +11,23 @@
  * @flow
  */
 import { app, BrowserWindow } from 'electron';
+import Store from 'electron-store';
 import MenuBuilder from './menu';
 
+
 let mainWindow = null;
+
+// Setup storage for user settings
+const store = new Store({
+  configName:'user-preferences',
+  defaults: {
+    windowBounds: {
+      width: 400, height: 800
+    }
+  }
+
+})
+
 
 if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install();
@@ -52,6 +66,8 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', async () => {
+  const { width, height } = store.get('windowBounds');
+
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.DEBUG_PROD === 'true'
@@ -62,8 +78,8 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     frame: false,
     // alwaysOnTop: true,
-    width: 400,
-    height: 728
+    width,
+    height
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -85,6 +101,12 @@ app.on('ready', async () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+
+  mainWindow.on('resize', () => {
+    const { width, height } = mainWindow.getBounds();
+    store.set('windowBounds', {width, height});
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
