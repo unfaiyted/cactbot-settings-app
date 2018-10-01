@@ -57,6 +57,9 @@ export default class Home extends Component<Props> {
 
         <div>{(applicationFolder) || "none"}</div>
 
+
+        <button onClick={this.getFolderPath}>Get Data From Folder</button>
+
         <h4>Recent News</h4>
 
         <ul>
