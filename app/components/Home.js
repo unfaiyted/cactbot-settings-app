@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes.json';
+
+import Cactbot from '../utils/files';
+
 import styles from './Home.scss';
 
 type Props = {};
@@ -20,12 +23,12 @@ export default class Home extends Component<Props> {
 
   componentWillMount() {
     this.setState({
+      data: null,
       settings: {'No data':'Not Fetched'}
     })
   }
 
   getSettings = () => {
-
     this.setState({
       settings: this.store.get('application')
     })
@@ -46,9 +49,21 @@ export default class Home extends Component<Props> {
     this.store.set("application",{location: path });
   };
 
+  getManifest = (e) => {
+    e.preventDefault();
+    const cactbot = new Cactbot(this.store.get('application.location'));
+
+    const data = cactbot.getManifest();
+
+    console.log(data);
+    this.setState({
+      data
+    })
+  };
+
   render() {
 
-    const { settings, applicationFolder } = this.state;
+    const { settings, applicationFolder, data } = this.state;
     return (
       <div className={styles.container} data-tid="container">
         <h2>CactBot v8.0.3</h2>
@@ -58,9 +73,18 @@ export default class Home extends Component<Props> {
         <div>{(applicationFolder) || "none"}</div>
 
 
-        <button onClick={this.getFolderPath}>Get Data From Folder</button>
+        <button onClick={this.getManifest}>Get Data From Manifest</button>
 
         <h4>Recent News</h4>
+
+
+        <div>
+          {(data) ? data.triggers.map((item) => <div>{item}</div>): null}
+        </div>
+
+        <div>
+          {(data) ? data.timelines.map((item) => <div>{item}</div>): null}
+        </div>
 
         <ul>
           <li>Lastest Reverison... date blah</li>
