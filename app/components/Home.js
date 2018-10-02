@@ -49,11 +49,8 @@ export default class Home extends Component<Props> {
 
   getManifest = (e) => {
     e.preventDefault();
-
-
     const data = this.cactbot.getManifest();
 
-    console.log(data);
     this.setState({
       data
     })
@@ -67,10 +64,15 @@ export default class Home extends Component<Props> {
 
   getTriggers = (e) => {
     e.preventDefault();
-
     this.cactbot.loadTrigger();
 
   };
+
+
+  handleChange = (e) => {
+    this.setState({
+    })
+  }
 
   render() {
 
@@ -89,8 +91,8 @@ export default class Home extends Component<Props> {
         <h4>Recent News</h4>
 
         <div>
-          <select onChange={this.setTrigger}>
-          {(data) ? data.triggers.map((item) => <option>{item}</option>): null}
+          <select  onChange={this.setTrigger}>
+          {(data) ? data.triggers.map((item) => <option value={item}>{item}</option>): null}
           </select>
           <button onClick={this.getTriggers}>Get Triggers</button>
         </div>
