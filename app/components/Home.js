@@ -17,13 +17,17 @@ export default class Home extends Component<Props> {
 
     const Store = window.require('electron-store');
     this.store = new Store();
-    this.cactbot = new Cactbot(this.store.get('application.location'));
+
+    if(this.store.get('application.location')) {
+      this.cactbot = new Cactbot(this.store.get('application.location'));
+    }
   }
 
 
   componentWillMount() {
     this.setState({
       data: null,
+      triggers: null,
       settings: {'No data':'Not Fetched'}
     })
   }
@@ -47,6 +51,8 @@ export default class Home extends Component<Props> {
     });
 
     this.store.set("application",{location: path });
+
+    this.cactbot = new Cactbot(this.store.get('application.location'));
   };
 
   getManifest = (e) => {
@@ -65,8 +71,10 @@ export default class Home extends Component<Props> {
   };
 
   getTriggers = (trigger) => {
-    console.log(trigger);
-    this.cactbot.loadTrigger(trigger);
+    this.setState({
+      triggers:  this.cactbot.loadTrigger(trigger)
+    })
+
   };
 
   getTimeline = (timeline) => {
@@ -77,7 +85,7 @@ export default class Home extends Component<Props> {
 
   render() {
 
-    const { settings, applicationFolder, data } = this.state;
+    const { settings, applicationFolder, data, triggers } = this.state;
     return (
       <div className={styles.container} data-tid="container">
         <h2>CactBot v8.0.3</h2>
@@ -97,6 +105,13 @@ export default class Home extends Component<Props> {
           label='Triggers'
           onSelectChange={this.getTriggers}
           items={data.triggers}/> : null }
+
+
+        <div>
+          <span>Triggers:
+          {(triggers) ? triggers.triggers.length : 0}
+          </span>
+        </div>
 
         {(data) ? <Select
           id='timelines-select'

@@ -28,14 +28,25 @@ export default class CactbotData {
 
 
   loadTrigger(file) {
-    const pathToFile= path.join(this.dataDir, file);
-
+    const pathToFile = path.join(this.dataDir, file.trim());
     console.log(pathToFile);
-    const json = JSON.parse(fs.readFileSync(pathToFile));
+    let fileContents;
+      try {
+        fileContents = fs.readFileSync(pathToFile).toString();
+        let json = eval(fileContents);
+        return json[0];
+      } catch (err) {
+        if(err.code === 'ENOENT') {
+          console.log('File not found');
+        } else {
+          throw err;
+        }
+      }
+
   }
 
   loadTimeline(file) {
-    let array = fs.readFileSync(path.join(this.dataDir, file)).toString().split("\n");
+    let array = fs.readFileSync(path.join(this.dataDir, file.trim())).toString().split("\n");
     return array;
   }
 
