@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import TitleBar from "../components/TitleBar";
+import TitleBar from "../components/menu/TitleBar";
 
 type Props = {
   children: React.Node
