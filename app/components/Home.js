@@ -15,9 +15,7 @@ export default class Home extends Component<Props> {
 
     const Store = window.require('electron-store');
     this.store = new Store();
-
-    console.log(this.store.path);
-
+    this.cactbot = new Cactbot(this.store.get('application.location'));
   }
 
 
@@ -51,14 +49,27 @@ export default class Home extends Component<Props> {
 
   getManifest = (e) => {
     e.preventDefault();
-    const cactbot = new Cactbot(this.store.get('application.location'));
 
-    const data = cactbot.getManifest();
+
+    const data = this.cactbot.getManifest();
 
     console.log(data);
     this.setState({
       data
     })
+  };
+
+  setTrigger = (e) => {
+    this.setTrigger({
+      currentTrigger: e.target.value
+    })
+  };
+
+  getTriggers = (e) => {
+    e.preventDefault();
+
+    this.cactbot.loadTrigger();
+
   };
 
   render() {
@@ -77,13 +88,17 @@ export default class Home extends Component<Props> {
 
         <h4>Recent News</h4>
 
-
         <div>
-          {(data) ? data.triggers.map((item) => <div>{item}</div>): null}
+          <select onChange={this.setTrigger}>
+          {(data) ? data.triggers.map((item) => <option>{item}</option>): null}
+          </select>
+          <button onClick={this.getTriggers}>Get Triggers</button>
         </div>
 
         <div>
-          {(data) ? data.timelines.map((item) => <div>{item}</div>): null}
+          <select>
+          {(data) ? data.timelines.map((item) => <option>{item}</option>): null}
+          </select>
         </div>
 
         <ul>
