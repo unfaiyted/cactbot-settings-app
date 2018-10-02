@@ -12,3 +12,4 @@ export default function counter(state: number = 0, action: Action) {
       return state;
   }
 }
+0

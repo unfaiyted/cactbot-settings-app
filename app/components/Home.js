@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes.json';
 
-import Cactbot from '../utils/files';
+import Cactbot from '../utils/cactbot';
 
 import styles from './Home.scss';
+import Slider from "./form/Slider";
+import Select from "./form/Select";
 
 type Props = {};
 
@@ -62,17 +64,16 @@ export default class Home extends Component<Props> {
     })
   };
 
-  getTriggers = (e) => {
-    e.preventDefault();
-    this.cactbot.loadTrigger();
-
+  getTriggers = (trigger) => {
+    console.log(trigger);
+    this.cactbot.loadTrigger(trigger);
   };
 
+  getTimeline = (timeline) => {
+    console.log(timeline);
+    this.cactbot.loadTimeline(timeline);
+  };
 
-  handleChange = (e) => {
-    this.setState({
-    })
-  }
 
   render() {
 
@@ -90,18 +91,18 @@ export default class Home extends Component<Props> {
 
         <h4>Recent News</h4>
 
-        <div>
-          <select  onChange={this.setTrigger}>
-          {(data) ? data.triggers.map((item) => <option value={item}>{item}</option>): null}
-          </select>
-          <button onClick={this.getTriggers}>Get Triggers</button>
-        </div>
+        {(data) ?
+          <Select
+          id='triggers-select'
+          label='Triggers'
+          onSelectChange={this.getTriggers}
+          items={data.triggers}/> : null }
 
-        <div>
-          <select>
-          {(data) ? data.timelines.map((item) => <option>{item}</option>): null}
-          </select>
-        </div>
+        {(data) ? <Select
+          id='timelines-select'
+          label='Timelines'
+          onSelectChange={this.getTimeline}
+          items={data.timelines}/> : null }
 
         <ul>
           <li>Lastest Reverison... date blah</li>
