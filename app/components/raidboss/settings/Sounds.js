@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Slider from "../form/Slider";
-import FilePicker from "../form/FilePicker";
+import Slider from "../../form/Slider";
+import FilePicker from "../../form/FilePicker";
 
 export default class Sounds extends React.Component<Props> {
   props: Props;

@@ -8,6 +8,7 @@ import Cactbot from '../utils/cactbot';
 import styles from './Home.scss';
 import Slider from "./form/Slider";
 import Select from "./form/Select";
+import FolderPicker from "./form/FolderPicker";
 
 type Props = {};
 
@@ -25,9 +26,13 @@ export default class Home extends Component<Props> {
 
 
   componentWillMount() {
+
+    const applicationFolder = this.store.get('application.location');
+
     this.setState({
       data: null,
       triggers: null,
+      applicationFolder,
       settings: {'No data':'Not Fetched'}
     })
   }
@@ -38,22 +43,7 @@ export default class Home extends Component<Props> {
     })
   };
 
-  getFolderPath = (e) => {
-    e.preventDefault();
-    const {dialog} = require('electron').remote;
 
-    let path = dialog.showOpenDialog({
-      properties: ['openDirectory']
-    });
-
-    this.setState({
-      applicationFolder: path
-    });
-
-    this.store.set("application",{location: path });
-
-    this.cactbot = new Cactbot(this.store.get('application.location'));
-  };
 
   getManifest = (e) => {
     e.preventDefault();
@@ -83,21 +73,41 @@ export default class Home extends Component<Props> {
   };
 
 
+  handleCactbotPath = (path) => {
+    this.store.set("application",{location: path });
+    this.cactbot = new Cactbot(this.store.get('application.location'));
+
+    this.setState({
+      applicationFolder: path,
+    })
+
+  };
+
+
   render() {
 
     const { settings, applicationFolder, data, triggers } = this.state;
     return (
       <div className={styles.container} data-tid="container">
-        <h2>CactBot v8.0.3</h2>
+        <h2>CactBot</h2>
 
-        <button onClick={this.getFolderPath}>Get Folder</button>
-
-        <div>{(applicationFolder) || "none"}</div>
+        {/*<div>{(applicationFolder) ? "Cactbot Folder Set" : "Folder UnSet"}</div>*/}
 
 
-        <button onClick={this.getManifest}>Get Data From Manifest</button>
+        <FolderPicker
+          btnText='Connect to cactbot'
+          storePat={(this.store.get('application.location'))}
+          onUpdate={this.handleCactbotPath}
+        />
 
         <h4>Recent News</h4>
+
+        <ul>
+          <li>Update recent commit</li>
+          <li>version Release</li>
+        </ul>
+
+        <button onClick={this.getManifest}>Get Data From Manifest</button>
 
         {(data) ?
           <Select

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Slider from "../form/Slider";
+import Slider from "../../form/Slider";
 
 export default class Timeline extends React.Component<Props> {
   props: Props;

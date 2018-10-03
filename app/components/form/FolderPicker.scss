@@ -1,0 +1,41 @@
+
+
+.picker {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 35px;
+  margin: 10px 0 10px 10px;
+  width: calc(100% - 20px);
+
+
+  button {
+    min-width: 140px;
+    width: 140px;
+    height: 100%;
+    border: 1px solid #fff;
+    font-size: 13px;
+    text-align: left;
+    border-radius: 3px 0 0 3px;
+    color: #fff;
+    background: darken(#ccc, 15%);
+    cursor: pointer;
+    overflow: hidden;
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+  div {
+    overflow: hidden;
+    line-height: 34px;
+    font-size: 12px;
+    padding: 0 9px 0 9px;
+    border-radius: 0 3px 3px 0;
+    border: 1px solid #fff;
+    flex-grow: 2;
+
+  }
+
+}

@@ -3,41 +3,40 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes.json';
 import styles from './Home.scss';
-import Section from "../containers/Section";
 
-import Alerts from "./raidboss/Alerts";
-import Timeline from "./raidboss/Timeline";
-import Sounds from "./raidboss/Sounds";
-import Nicknames from "./raidboss/Nicknames";
+import PageHeader from "./menu/PageHeader";
+import Settings from "./raidboss/Settings";
+import Triggers from "./raidboss/Triggers";
 
 type Props = {};
 
 export default class RaidBoss extends Component<Props> {
   props: Props;
 
+  componentWillMount() {
+    this.setState({
+      view: 'triggers'
+    });
+  };
+
+  handleView = (view) => {
+    console.log(view);
+    this.setState({
+      view
+    });
+  };
+
   render() {
+    const { view }  = this.state;
     return (
       <div className={styles.container} data-tid="container">
 
-        <h1>Raid Boss</h1>
-        <Section
-          title='Timeline'
-          enableToggle={true}
-          children={<Timeline/>}/>
+        <PageHeader
+          header='Raid Boss'
+          onSelect={this.handleView}
+        />
 
-        <Section
-          title='Alerts'
-          enableToggle={true}
-          children={<Alerts/>}/>
-
-        <Section
-          title='Sounds and Volumes'
-          children={<Sounds/>}/>
-
-        <Section
-          title='Nicknames'
-          children={<Nicknames/>}/>
-
+        {(view === "settings") ?  <Settings/> : <Triggers/>}
 
       </div>
     );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Toggle from "../form/Toggle";
+import Toggle from "../../form/Toggle";
 
 export default class Alerts extends React.Component<Props> {
   props: Props;
