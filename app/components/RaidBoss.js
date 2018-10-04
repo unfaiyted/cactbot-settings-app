@@ -7,6 +7,7 @@ import styles from './Home.scss';
 import PageHeader from "./menu/PageHeader";
 import Settings from "./raidboss/Settings";
 import Triggers from "./raidboss/Triggers";
+import Timelines from "./raidboss/Timelines";
 
 type Props = {};
 
@@ -36,7 +37,9 @@ export default class RaidBoss extends Component<Props> {
           options={['settings','triggers','timeline']}
         />
 
-        {(view === "settings") ?  <Settings/> : <Triggers/>}
+        {(view === "settings") ? <Settings/> : null}
+        {(view === "triggers") ? <Triggers/> : null }
+        {(view === "timeline") ? <Timelines/> : null}
 
       </div>
     );

@@ -44,7 +44,10 @@ export default class PageHeader extends React.Component {
               className="fas fa-arrow-left"></i> : null }
 
           {(options.includes("timeline")) ?
-            <i className="fas fa-stopwatch"></i>  : null }
+            <i
+              onClick={this.changeView}
+              data-id='timeline'
+              className="fas fa-stopwatch"></i>  : null }
 
           {(options.includes("triggers")) ?
             <i

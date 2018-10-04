@@ -2,7 +2,7 @@ import * as React from 'react';
 import Select from "../form/Select";
 import Cactbot from "../../utils/cactbot";
 
-export default class Triggers extends React.Component<Props> {
+export default class Timelines extends React.Component<Props> {
   constructor(props){
     super(props);
 
@@ -21,16 +21,7 @@ export default class Triggers extends React.Component<Props> {
     });
   };
 
-
-  getTriggers = (trigger) => {
-    this.setState({
-      triggers:  this.cactbot.loadTrigger(trigger)
-    })
-
-  };
-
   getTimeline = (timeline) => {
-    console.log(timeline);
     this.cactbot.loadTimeline(timeline);
   };
 
@@ -40,20 +31,17 @@ export default class Triggers extends React.Component<Props> {
     return (
       <div>
 
-        <button onClick={this.getManifest}>Get Data From Manifest</button>
-
-        {(data) ?
-          <Select
-            id='triggers-select'
-            label='Triggers'
-            onSelectChange={this.getTriggers}
-            items={data.triggers}/> : null }
-
         <div>
-          <span>Triggers:
+          <span>Timelines:
             {(triggers) ? triggers.triggers.length : 0}
           </span>
         </div>
+
+        {(data) ? <Select
+          id='timelines-select'
+          label='Timelines'
+          onSelectChange={this.getTimeline}
+          items={data.timelines}/> : null }
 
       </div>
     );

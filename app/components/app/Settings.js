@@ -10,15 +10,11 @@ export default class Settings extends Component<Props> {
     const Store = window.require('electron-store');
     this.store = new Store();
 
-    if(this.store.get('application.location')) {
-      this.cactbot = new Cactbot(this.store.get('application.location'));
-    }
   }
 
 
   updateCactbotPath = (path) => {
     this.store.set("application",{location: path });
-    this.cactbot = new Cactbot(this.store.get('application.location'));
 
     this.setState({
       applicationFolder: path,
