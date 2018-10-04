@@ -20,7 +20,6 @@ export default class RaidBoss extends Component<Props> {
   };
 
   handleView = (view) => {
-    console.log(view);
     this.setState({
       view
     });
@@ -34,6 +33,7 @@ export default class RaidBoss extends Component<Props> {
         <PageHeader
           header='Raid Boss'
           onSelect={this.handleView}
+          options={['settings','triggers','timeline']}
         />
 
         {(view === "settings") ?  <Settings/> : <Triggers/>}

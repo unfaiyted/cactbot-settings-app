@@ -5,29 +5,32 @@
   overflow-x: hidden;
   width: 100%;
   height: calc(100vh - 33px);
-}
+  h1 {
+    font-size: 1.9em;
+    padding-left: 10px;
+  }
 
-.container h1 {
-  font-size: 1.9em;
-  padding-left: 10px;
-}
+  h2 {
+    font-size: 1.4rem;
+  }
 
-.container h2 {
-  font-size: 1.4rem;
-}
+  h3 {
+    font-size: 1.1rem;
+  }
 
-.container h3 {
-  font-size: 1.1rem;
-}
+  h4 {
+    font-size: 0.9rem;
+  }
 
-.container h4 {
-  font-size: 0.9rem;
-}
+  h5 {
+    font-size: 1.3rem;
+  }
 
-.container h5 {
-  font-size: 1.3rem;
-}
+  a {
+    font-size: 1.4rem;
+  }
 
-.container a {
-  font-size: 1.4rem;
+  .setup {
+    padding: 20px;
+  }
 }
