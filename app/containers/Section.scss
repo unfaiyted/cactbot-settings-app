@@ -2,13 +2,13 @@
   min-width: calc(100vw - 10px);
   padding: 0;
   margin: 0;
-
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: calc(100% - 20px);
     padding: 10px;
+
     h2 {
       cursor: pointer;
       text-align: left;

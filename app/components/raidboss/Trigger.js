@@ -11,7 +11,7 @@ export default class Trigger extends React.Component<Props> {
 
 
   render() {
-    const {id, regex, alertText, infoText, tts, groupTTS} = this.props.trigger;
+    const {id, regex, alertText, infoText, alarmText, tts, groupTTS} = this.props.trigger;
 
     return (
       <li className={styles.trigger}>
@@ -39,9 +39,19 @@ export default class Trigger extends React.Component<Props> {
           </div>
 
           <div className={styles.text}>
-            <span className={styles.alertText}>
+
+            {(alarmText) ? <span className={styles.alarmText}>
+             Alarm Text:  {(alarmText) ?  alarmText.en : null}
+             </span> : null}
+
+            {(alertText) ? <span className={styles.alertText}>
              Alert Text:  {(alertText) ?  alertText.en : null}
-            </span>
+             </span> : null}
+
+            {(infoText) ? <span className={styles.infoText}>
+             Info Text:  {(infoText) ?  infoText.en : null}
+             </span> : null}
+
             <span></span>
           </div>
         </div>

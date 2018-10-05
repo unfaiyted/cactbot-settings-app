@@ -27,10 +27,15 @@ export default class Section extends React.Component<Props> {
   };
 
   render() {
-    const { children, title, enableToggle } = this.props;
+    const { children, title, enableToggle, bgColor} = this.props;
     const { expandMenu }= this.state;
+
+    const style = {
+      backgroundColor: bgColor
+    }
+
     return (
-      <div className={styles.section}>
+      <div className={styles.section} style={style}>
         <div className={styles.header}>
           <h2 onClick={this.toggleExpand}>{title}</h2>
           {(enableToggle) ? <Toggle id={title} label={null}/> : null}
