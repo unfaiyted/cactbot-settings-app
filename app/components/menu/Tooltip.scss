@@ -1,0 +1,32 @@
+.tooltip {
+  border: 1px solid black;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 8px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+
+  bottom: -22px;
+  right: 4px;
+  z-index: 2;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.75) transparent;
+    top: -19px;
+    left: 10px;
+  }
+}
+
+.hideTooltip {
+  display: none;
+}

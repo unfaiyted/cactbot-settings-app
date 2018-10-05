@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Select from "../form/Select";
 import Cactbot from "../../utils/cactbot";
+import Trigger from "./Trigger";
+import styles from "./Trigger.scss";
 
 export default class Triggers extends React.Component<Props> {
   constructor(props){
@@ -29,18 +31,11 @@ export default class Triggers extends React.Component<Props> {
 
   };
 
-  getTimeline = (timeline) => {
-    console.log(timeline);
-    this.cactbot.loadTimeline(timeline);
-  };
-
   render() {
     const {data, triggers} = this.state;
 
     return (
       <div>
-
-        <button onClick={this.getManifest}>Get Data From Manifest</button>
 
         {(data) ?
           <Select
@@ -49,11 +44,12 @@ export default class Triggers extends React.Component<Props> {
             onSelectChange={this.getTriggers}
             items={data.triggers}/> : null }
 
-        <div>
-          <span>Triggers:
-            {(triggers) ? triggers.triggers.length : 0}
-          </span>
-        </div>
+        <ul className={styles.triggers}>
+            {(triggers) ?
+              triggers.triggers.map((item) => <Trigger trigger={item} />) : null}
+        </ul>
+
+        <button>Add Trigger</button>
 
       </div>
     );

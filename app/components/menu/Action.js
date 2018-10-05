@@ -1,41 +1,58 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import styles from './PageHeader.scss';
+import * as React from 'react';
+import Tooltip from "./Tooltip";
+import styles from "./Action.scss";
 
-type Props = {
+const actionTypes = {
+  home: 'fas fa-arrow-left',
+  triggers: 'fas fa-crosshairs',
+  timeline: 'fas fa-stopwatch',
+  settings: 'fa fa-cogs',
+  mute: 'fas fa-volume-off',
+  unMute: 'fas fa-volume',
+  hide: 'far fa-eye-slash',
+  unHide: 'far fa-eye',
+};
 
-}
 
-export default class PageHeader extends React.Component {
-  constructor(props) {
+export default class Action extends React.Component<Props> {
 
-  }
 
-  changeView = (e) => {
-    const { onSelect } = this.props;
-    const key = e.target.getAttribute('data-id');
-
-    onSelect(key);
+  componentWillMount() {
+    this.setState({
+      displayTip: false,
+    })
   };
 
+  showTip = () => {
+    console.log("change tip");
+    this.setState({
+      displayTip: true,
+    })
+  };
+
+  hideTip = () => {
+    this.setState({
+      displayTip: false,
+    })
+  };
+
+
   render() {
-    const {header} = this.props;
+
+    const { id, tooltipContent, type, onSelected} = this.props;
+    const { displayTip } = this.state;
+
+    const  icon = actionTypes[type];
+
     return (
-      <div>
-        <i
-          onClick={this.changeView}
-          data-id='triggers'
-          className="fas fa-crosshairs"></i>
+      <div className={styles.action}
+           onMouseEnter={this.showTip}
+           onMouseLeave={this.hideTip}
+           onClick={onSelected}
+      >
+      <i data-id={id} className={icon}></i>
+        {(tooltipContent) ?  <Tooltip text={tooltipContent} displayTip={displayTip} /> : null}
       </div>
-          <i className="fas fa-stopwatch"></i>
-
-
-
-          <i onClick={this.changeView}
-             data-id='settings'
-             className="fa fa-cogs"
-             aria-hidden="true"></i>
     )
   }
-
 }

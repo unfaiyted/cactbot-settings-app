@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import styles from './PageHeader.scss';
+import Action from "./Action";
 
 type Props = {
 
@@ -38,29 +39,33 @@ export default class PageHeader extends React.Component {
         <div>
 
           {(location != "home") ?
-            <i
-              onClick={this.changeView}
-              data-id='home'
-              className="fas fa-arrow-left"></i> : null }
+
+            <Action id={'home'}
+                    type={'home'}
+                    tooltipContent={'Home'}
+                    onSelected={this.changeView}/>
+              : null }
 
           {(options.includes("timeline")) ?
-            <i
-              onClick={this.changeView}
-              data-id='timeline'
-              className="fas fa-stopwatch"></i>  : null }
+            <Action id={'timeline'}
+                    type={'timeline'}
+                    tooltipContent={'Timeline'}
+                    onSelected={this.changeView}/>
+            : null }
 
           {(options.includes("triggers")) ?
-            <i
-            onClick={this.changeView}
-            data-id='triggers'
-            className="fas fa-crosshairs"></i>  : null }
+            <Action id={'triggers'}
+                    type={'triggers'}
+                    tooltipContent={'Triggers'}
+                    onSelected={this.changeView}/>
+            : null }
 
           {(options.includes("settings")) ?
-          <i onClick={this.changeView}
-             data-id='settings'
-             className="fa fa-cogs"
-             aria-hidden="true"></i> : null }
-
+            <Action id={'settings'}
+                    type={'settings'}
+                    tooltipContent={'Settings'}
+                    onSelected={this.changeView}/>
+            : null }
 
         </div>
       </div>
