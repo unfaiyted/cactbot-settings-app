@@ -26,7 +26,7 @@
       display: flex;
 
       div {
-        padding-right: 15px;
+        padding-right: 25px;
       }
 
       div:last-of-type {
@@ -37,16 +37,31 @@
 
   .main {
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      display: inline-block;
+    }
 
     .regEx {
       font-size: 10px;
     }
 
     .text {
+      .alarmText {
+        color: red;
+      }
+
       .alertText {
+        color: orange;
       }
 
       .infoText {
+        color: cornflowerblue;
+      }
+
+      .tts {
       }
     }
   }

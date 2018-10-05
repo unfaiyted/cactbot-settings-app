@@ -4,15 +4,34 @@ import Action from "../menu/Action";
 
 export default class Trigger extends React.Component<Props> {
 
+  componentWillMount() {
+    this.setState({
+       enableSound: true,
+       enableVisual: true,
+    });
+  };
 
-  toggleAction = () => {
-    console.log('toggle action')
+
+
+  toggleAction = (e) => {
+
+    const {enableSound, enableVisual} = this.state;
+
+    if(e.target.dataset.id === 'mute')
+      this.setState({
+        enableSound: !enableSound,
+      });
+
+    if(e.target.dataset.id === 'hide')
+      this.setState({
+        enableVisual: !enableVisual,
+      })
   };
 
 
   render() {
     const {id, regex, alertText, infoText, alarmText, tts, groupTTS} = this.props.trigger;
-
+    const { enableSound, enableVisual} = this.state;
     return (
       <li className={styles.trigger}>
 
@@ -22,11 +41,12 @@ export default class Trigger extends React.Component<Props> {
 
           <div className={styles.actions}>
              <Action id={'mute'}
-                      type={'mute'}
+                      type={(enableSound) ? 'unMute' : 'mute'}
                       tooltipContent={'Mute sounds'}
                       onSelected={this.toggleAction}/>
+
               <Action id={'hide'}
-                      type={'hide'}
+                      type={(enableVisual) ? 'unHide' : 'hide'}
                       tooltipContent={'Hide visuals'}
                       onSelected={this.toggleAction}/>
               </div>
@@ -35,7 +55,7 @@ export default class Trigger extends React.Component<Props> {
 
         <div className={styles.main}>
           <div className={styles.regEx}>
-            RegEx: {regex.toString()}
+            <span>RegEx:</span> {regex.toString()}
           </div>
 
           <div className={styles.text}>
@@ -52,7 +72,12 @@ export default class Trigger extends React.Component<Props> {
              Info Text:  {(infoText) ?  infoText.en : null}
              </span> : null}
 
-            <span></span>
+            {(tts) ?
+              <span className={styles.tts}>
+                {JSON.stringify(tts)}
+              </span> : null
+            }
+
           </div>
         </div>
 

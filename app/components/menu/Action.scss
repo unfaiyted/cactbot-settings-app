@@ -3,7 +3,13 @@
   position: relative;
   padding: 0;
   margin: 0;
-
+  i {
+    cursor: pointer;
+  }
   &:hover {
+  }
+
+  .active {
+    color: #1abc9c;
   }
 }

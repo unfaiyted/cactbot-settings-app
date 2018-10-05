@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Cactbot from "../../utils/cactbot";
 import FolderPicker from "../form/FolderPicker";
 
 // Main APP Settings - Cactbot
@@ -42,12 +41,12 @@ export default class Settings extends Component<Props> {
         />
 
 
-        {/*<button onClick={this.getSettings}>Get Settings</button>*/}
+        {/* <button onClick={this.getSettings}>Get Settings</button> */}
 
-          {/*{Object.keys(settings).map((key) => (*/}
-            {/*<div>{key} - {settings[key]}</div>*/}
-          {/*))*/}
-          {/*}*/}
+          {/* {Object.keys(settings).map((key) => ( */}
+            {/* <div>{key} - {settings[key]}</div> */}
+          {/* )) */}
+          {/* } */}
 
 
       </div>

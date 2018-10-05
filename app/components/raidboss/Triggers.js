@@ -40,9 +40,15 @@ export default class Triggers extends React.Component<Props> {
   render() {
     const {data, triggers} = this.state;
 
-    const regEx = /triggers\/(?<name>.*?).js/g;
+    const regEx = /triggers\/(.*?).js/;
 
-    data.triggers.map((text) => this.regExHelper.getMatchByName(text, regEx, 'name'));
+    const triggerNames =  data.triggers.map(
+      (text) => {
+      return ({
+        text,
+        value: this.regExHelper.getMatch(text, regEx).toUpperCase()
+      });
+    });
 
     return (
       <div>
@@ -55,7 +61,8 @@ export default class Triggers extends React.Component<Props> {
           <Select
             id='triggers-select'
             onSelectChange={this.getTriggers}
-            items={data.triggers}/> : null }
+            displayed
+            items={triggerNames}/> : null }
 
             <button>Add Trigger</button>
 

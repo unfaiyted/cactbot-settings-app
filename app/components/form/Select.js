@@ -42,7 +42,7 @@ export default class Select extends Component {
           onChange={this.handleChanges}
           value={currentValue}
         >
-          {(items) ? items.map((item) => <option key={item} value={item} >{item}</option>): null}
+          {(items) ? items.map((item) => <option key={item.value} value={item.text} >{item.value}</option>): null}
         </select>
       </div>
     )

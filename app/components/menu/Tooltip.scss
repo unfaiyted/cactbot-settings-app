@@ -4,14 +4,17 @@
   -moz-border-radius: 3px;
   border-radius: 3px;
   font-size: 8px;
-  padding: 0;
-  margin: 0;
+  padding: 5px;
   position: absolute;
   background: rgba(0, 0, 0, 0.75);
   pointer-events: none;
-
-  bottom: -22px;
-  right: 4px;
+  //white-space: nowrap;
+  //bottom: -34px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 100%;
+  right: 0;
+  left: 0;
   z-index: 2;
 
   &:after {

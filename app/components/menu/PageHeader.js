@@ -22,9 +22,8 @@ export default class PageHeader extends React.Component {
     this.setState({
       location: key,
     })
-
-
     onSelect(key);
+    return key;
   };
 
   render() {
@@ -43,28 +42,34 @@ export default class PageHeader extends React.Component {
             <Action id={'home'}
                     type={'home'}
                     tooltipContent={'Home'}
-                    onSelected={this.changeView}/>
+                    onSelected={this.changeView}
+                    active={(location === 'home')}
+            />
               : null }
 
           {(options.includes("timeline")) ?
             <Action id={'timeline'}
                     type={'timeline'}
                     tooltipContent={'Timeline'}
-                    onSelected={this.changeView}/>
+                    onSelected={this.changeView}
+                    active={(location === 'timeline')}
+            />
             : null }
 
           {(options.includes("triggers")) ?
             <Action id={'triggers'}
                     type={'triggers'}
                     tooltipContent={'Triggers'}
-                    onSelected={this.changeView}/>
+                    onSelected={this.changeView}
+                    active={(location === 'triggers')}/>
             : null }
 
           {(options.includes("settings")) ?
             <Action id={'settings'}
                     type={'settings'}
                     tooltipContent={'Settings'}
-                    onSelected={this.changeView}/>
+                    onSelected={this.changeView}
+                    active={(location === 'settings')}/>
             : null }
 
         </div>

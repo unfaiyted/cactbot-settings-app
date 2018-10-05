@@ -3,8 +3,13 @@ export default class RegExHelper {
   constructor(regex) {
 
   }
-  //
 
+  getMatch(string, regex) {
+    console.log('before regex',string);
+    const match = regex.exec(string.trim());
+    return (match) ? match[1] : '?????';
+  }
+  //
   //const RE_DATE = /([0-9]{4})-([0-9]{2})-([0-9]{2})/;
   //
   // const matchObj = RE_DATE.exec('1999-12-31');
@@ -29,7 +34,7 @@ export default class RegExHelper {
   // matches[0]...
   getNamedGroups(regex) {
     //const groupRegEx = /\?\<.*?\>/gmi;
-    const groupNameRegEx = /\?\<(.*?)\>/gmi;
+    const groupNameRegEx = /\?\<(.*?)\>/;
 
     let results = [{
       whole: [],
@@ -59,9 +64,10 @@ export default class RegExHelper {
 
     replacements.map((item) => {
        regString = regString.replace(item,'');
+       return item;
     });
 
-    return new RegExp(regString,"g");
+    return new RegExp(regString);
 
   }
 
