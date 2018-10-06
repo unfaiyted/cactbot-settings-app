@@ -26,7 +26,6 @@ export default class CactbotData {
    };
   }
 
-
   loadTrigger(file) {
     const pathToFile = path.join(this.dataDir, file.trim());
     console.log(pathToFile);

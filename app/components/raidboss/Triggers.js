@@ -6,6 +6,7 @@ import styles from "./Trigger.scss";
 import Section from "../../containers/Section";
 import RegExHelper from "../../utils/regex";
 import Button from "../form/Button";
+import DutyImage from "./DutyImage";
 
 
 export default class Triggers extends React.Component<Props> {
@@ -16,7 +17,7 @@ export default class Triggers extends React.Component<Props> {
     this.store = new Store();
 
     this.regExHelper = new RegExHelper();
-
+    this.regEx = /triggers\/(.*?).js/;
 
     if(this.store.get('application.location')) {
       this.cactbot = new Cactbot(this.store.get('application.location'));
@@ -27,27 +28,29 @@ export default class Triggers extends React.Component<Props> {
     const data = this.cactbot.getManifest();
     this.setState({
       data,
+      currentDuty: 'O1S',
     });
   };
 
 
   getTriggers = (trigger) => {
     this.setState({
-      triggers:  this.cactbot.loadTrigger(trigger)
+      triggers:  this.cactbot.loadTrigger(trigger),
+      currentDuty: this.regExHelper.getMatch(trigger, this.regEx)
     })
 
   };
 
   render() {
-    const {data, triggers} = this.state;
+    const {data, triggers, currentDuty} = this.state;
 
-    const regEx = /triggers\/(.*?).js/;
+
 
     const triggerNames =  data.triggers.map(
       (text) => {
       return ({
         text,
-        value: this.regExHelper.getMatch(text, regEx).toUpperCase()
+        value: this.regExHelper.getMatch(text, this.regEx).toUpperCase()
       });
     });
 
@@ -58,14 +61,23 @@ export default class Triggers extends React.Component<Props> {
           bgColor='#3C6958'
         />
 
+
+        <DutyImage duty={currentDuty}>
+          <div>
         {(data) ?
-          <Select
+           <Select
             id='triggers-select'
             onSelectChange={this.getTriggers}
             displayed
             items={triggerNames}/> : null }
+         </div>
 
-            <Button text='Add Trigger'/>
+            <div>
+              <Button text='Add Trigger'/>
+            </div>
+        </DutyImage>
+
+
 
         <ul className={styles.triggers}>
             {(triggers) ?

@@ -1,8 +1,8 @@
 import * as React from "react";
 import PropTypes from 'prop-types';
+import Highlight from 'react-highlight.js'
 import LangaugeHelper from '../../utils/language';
 import styles from './Trigger.scss'
-import Highlight from 'react-highlight.js'
 
 export default class TriggerText extends React.Component<Props> {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class TriggerText extends React.Component<Props> {
 
     return (
       <div>
-        <div className={styles.title}>{name}</div>
+        <div className={[styles.title, styles[id], ].join(' ')}>{name}</div>
         {(itemType === "function") ? (
           <Highlight language='javascript'>
             {item.toString()}
@@ -40,15 +40,18 @@ export default class TriggerText extends React.Component<Props> {
           ) : (
           <div className={styles[id]}>
 
+
+            <ul>
             {Object.keys(item).map((key) => (
-                  <div>
-                    <span>
+                  <li>
+                    <span className={styles.lang}>
                       {this.langaugeHelper.getNameFromCode(key)}
                     </span>
                     <span>
                       {item[key]}
                     </span>
-                  </div>))}
+                  </li>))}
+            </ul>
           </div>
         )}
 

@@ -13,12 +13,12 @@ pre, xmp, plaintext, listing {
 .trigger {
   list-style-type: none;
   margin: 0;
-
   border: 1px solid $grey;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   margin-bottom: 20px;
+
 
   .id {
     display: flex;
@@ -28,6 +28,11 @@ pre, xmp, plaintext, listing {
     padding: 8px;
     background: darken($grey, 7%);
     justify-content: space-between;
+
+
+  .headerText {
+    padding-left: 10px;
+  }
 
     .actions {
       display: flex;
@@ -42,9 +47,17 @@ pre, xmp, plaintext, listing {
     }
   }
 
+
+  .collapsed {
+    visibility: hidden;
+    height: 0;
+  }
+
   .main {
     display: flex;
     flex-direction: column;
+
+
 
     span {
       display: inline-block;
@@ -63,9 +76,15 @@ pre, xmp, plaintext, listing {
       .title {
         margin-top: 10px;
         padding: 3px;
+        font-weight: bold;
         background: darken($grey, 10%);
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
+      }
+
+      .lang {
+        font-weight: bold;
+        padding-right: 5px;
       }
 
       .alarmText {

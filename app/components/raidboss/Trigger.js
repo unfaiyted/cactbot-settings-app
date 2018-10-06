@@ -10,6 +10,7 @@ export default class Trigger extends React.Component<Props> {
     this.setState({
        enableSound: true,
        enableVisual: true,
+       collapsed: true,
     });
   };
 
@@ -31,15 +32,36 @@ export default class Trigger extends React.Component<Props> {
   };
 
 
+  toggleExpand =() => {
+    const { collapsed } = this.state;
+
+    console.log(collapsed);
+
+    console.log("toggle");
+    this.setState({
+      collapsed: !collapsed
+    })
+
+  }
+
   render() {
     const {id, regex, alertText, infoText, alarmText, tts, groupTTS} = this.props.trigger;
-    const { enableSound, enableVisual} = this.state;
+    const { enableSound, enableVisual, collapsed} = this.state;
     return (
       <li className={styles.trigger}>
 
-        <div className={styles.id}>
-          <span>{id}</span>
-              <div className={styles.actions}>
+        <div  className={styles.id}>
+          <div onClick={this.toggleExpand} >
+            <Action id={id}
+                    type={(collapsed) ? "up" : "down"}
+                    tooltipContent="Expand"
+                    onSelected={this.toggleExpand}/>
+
+            <span className={styles.headerText}>{id}</span>
+
+          </div>
+
+            <div className={styles.actions}>
                    <Action id="mute"
                         type={(enableSound) ? 'unMute' : 'mute'}
                         tooltipContent="Mute sounds"
@@ -53,7 +75,7 @@ export default class Trigger extends React.Component<Props> {
         </div>
 
 
-        <div className={styles.main}>
+        <div className={[styles.main,  (collapsed) ? styles.collapsed : null].join(' ')}>
           <div className={styles.regEx}>
             <span>RegEx:</span> {regex.toString()}
           </div>

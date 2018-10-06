@@ -11,6 +11,8 @@ const actionTypes = {
   unMute: 'fas fa-volume-up',
   hide: 'far fa-eye-slash',
   unHide: 'far fa-eye',
+  up: 'fas fa-angle-up',
+  down: 'fas fa-angle-down',
 };
 
 
