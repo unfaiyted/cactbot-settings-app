@@ -46,7 +46,7 @@ export default class Home extends Component<Props> {
           options={['settings']}
         />
 
-        <div className={styles.setup}>{(!cbFolderSet) ? 'Set Cactbot location in settings!' : 'Ready to go.' }</div>
+        <div className={styles.setup}>{(!cbFolderSet) ? 'Set Cactbot location in settings!' : ' Cactbot Located. Ready to go.' }</div>
 
         {(view === "settings") ? <Settings/> : <Main/>}
 

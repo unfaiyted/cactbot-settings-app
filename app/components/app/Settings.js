@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import FolderPicker from "../form/FolderPicker";
+import Section from "../../containers/Section";
 
 // Main APP Settings - Cactbot
 export default class Settings extends Component<Props> {
@@ -33,6 +34,9 @@ export default class Settings extends Component<Props> {
     return (
       <div>
 
+        <Section title='Settings'
+                 bgColor='#3C6958'
+        />
 
         <FolderPicker
           btnText='Connect to cactbot'

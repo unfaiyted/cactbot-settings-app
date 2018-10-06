@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Select from "../form/Select";
 import Cactbot from "../../utils/cactbot";
+import Section from "../../containers/Section";
+import RegExHelper from "../../utils/regex";
 
 export default class Timelines extends React.Component<Props> {
   constructor(props){
@@ -8,7 +10,7 @@ export default class Timelines extends React.Component<Props> {
 
     const Store = window.require('electron-store');
     this.store = new Store();
-
+    this.regExHelper = new RegExHelper();
     if(this.store.get('application.location')) {
       this.cactbot = new Cactbot(this.store.get('application.location'));
     }
@@ -26,23 +28,33 @@ export default class Timelines extends React.Component<Props> {
   };
 
   render() {
-    const {data, triggers} = this.state;
+    const {data, timelines} = this.state;
+
+    const regEx = /timelines\/(.*?).txt/;
+
+    const timelineNames =  data.timelines.map(
+      (text) => {
+        return ({
+          text,
+          value: this.regExHelper.getMatch(text, regEx).toUpperCase()
+        });
+      });
 
     return (
       <div>
 
-        <div>
-          <span>Timelines:
-            {(triggers) ? triggers.triggers.length : 0}
-          </span>
-        </div>
+
+        <Section title='Timelines'
+                 bgColor='#49585D'
+        />
 
         {(data) ? <Select
           id='timelines-select'
-          label='Timelines'
           onSelectChange={this.getTimeline}
-          items={data.timelines}/> : null }
+          items={timelineNames}/> : null }
 
+
+        <button>Add Timeline</button>
       </div>
     );
   }

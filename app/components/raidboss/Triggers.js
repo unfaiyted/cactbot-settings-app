@@ -5,6 +5,7 @@ import Trigger from "./Trigger";
 import styles from "./Trigger.scss";
 import Section from "../../containers/Section";
 import RegExHelper from "../../utils/regex";
+import Button from "../form/Button";
 
 
 export default class Triggers extends React.Component<Props> {
@@ -54,7 +55,7 @@ export default class Triggers extends React.Component<Props> {
       <div>
 
         <Section title='Triggers'
-          bgColor='rgb(49, 58, 46)'
+          bgColor='#3C6958'
         />
 
         {(data) ?
@@ -64,7 +65,7 @@ export default class Triggers extends React.Component<Props> {
             displayed
             items={triggerNames}/> : null }
 
-            <button>Add Trigger</button>
+            <Button text='Add Trigger'/>
 
         <ul className={styles.triggers}>
             {(triggers) ?

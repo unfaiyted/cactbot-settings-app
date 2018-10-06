@@ -15,6 +15,12 @@ export default class Settings extends Component<Props> {
   render() {
     return (
       <div>
+
+        <Section
+          title='Settings'
+          bgColor='#49585D'
+        />
+
         <Section
           title='Timeline'
           enableToggle={true}

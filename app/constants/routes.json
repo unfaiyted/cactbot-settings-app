@@ -1,4 +1,8 @@
 {
   "HOME": "/",
-  "RAIDBOSS": "/raidboss"
+  "RAIDBOSS": "/raidboss",
+  "OOPSYRAID": "/oopsy",
+  "EUREKA": "/eureka",
+  "JOBS": "/jobs",
+  "DPS": "/dps"
 }

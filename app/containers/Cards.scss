@@ -1,0 +1,43 @@
+@import '../constants/variables.scss';
+
+$card-margin: 10px;
+$card-padding: 10px;
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+  }
+
+  .card {
+    width: calc(50% - 40px);
+    border: $blue;
+    background: darken($green, 7%);
+    padding: $card-padding;
+    margin: $card-margin;
+    cursor: pointer;
+
+    &:hover {
+      background: $green;
+      transform: scale(1.03);
+      @include transition(all 0.3s ease);
+    }
+
+    .icon {
+      font-size: 3.5em;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .footer {
+      font-size: 1.2em;
+      text-align: center;
+    }
+  }
+}
