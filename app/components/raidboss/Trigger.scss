@@ -1,4 +1,9 @@
 @import '../../constants/variables';
+@import url('https://highlightjs.org/static/demo/styles/railscasts.css');
+
+pre, xmp, plaintext, listing {
+  margin: 0 0;
+}
 
 .triggers {
   padding: 10px;
@@ -13,7 +18,7 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
   .id {
     display: flex;
@@ -38,7 +43,6 @@
   }
 
   .main {
-    padding: 5px;
     display: flex;
     flex-direction: column;
 
@@ -47,24 +51,43 @@
     }
 
     .regEx {
-      font-size: 10px;
+      font-size: 0.9em;
+      background: darken($blue, 11%);
+      border-bottom: $grey;
+      padding: 6px;
     }
 
     .text {
+      padding: 6px;
+
+      .title {
+        margin-top: 10px;
+        padding: 3px;
+        background: darken($grey, 10%);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+      }
+
       .alarmText {
-        color: red;
+        color: lighten($red, 20%);
       }
 
       .alertText {
-        color: orange;
+        color: lighten($orange, 20%);
       }
 
       .infoText {
-        color: cornflowerblue;
+        color: lighten($blue, 20%);
       }
 
       .tts {
       }
     }
+  }
+
+  .modifyActions {
+    padding: 5px;
+    background: darken($grey, 7%);
+    width: calc(100% - 10px);
   }
 }
